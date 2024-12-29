@@ -1,0 +1,28 @@
+# Ignore Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment and dependencies
+bin/
+boto3/
+botocore/
+dateutil/
+jmespath/
+s3transfer/
+urllib3/
+*.dist-info/
+
+# Ignore virtual environment (if not named bin/)
+venv/
+.env/
+
+# Terraform local files
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Ignore other large temporary files
+*.log
+
