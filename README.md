@@ -2,15 +2,10 @@
 
 ## 👉 Follow Complete Documentation: 📄 [AWS Serverless Video Upload and Playback Application](https://your-repository-link)
 
-![AWS Serverless Video Application](https://github.com/user-attachments/assets/8cda5508-4736-437e-8489-691279df9fe7)
+![AWS Serverless Video Application](https://github.com/prafulpatel16/video-app-aws-serverless/blob/master/images/AWS%20Blogs-Thumbnail%201200%20X%20644.gif)
 
----
 
 ## Architecture Diagram:
-
-![Architecture Diagram](https://github.com/user-attachments/assets/6324468f-4c46-421e-801b-64a880d1fec8)
-
----
 
 ## Table of Contents
 
