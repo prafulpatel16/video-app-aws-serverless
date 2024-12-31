@@ -4,7 +4,7 @@ document.getElementById("uploadForm").onsubmit = async function (e) {
     const file = fileInput.files[0];
 
     if (!file) {
-        alert("Please select a file before uploading.");
+        alert("Please select a video file before uploading.");
         return;
     }
 
@@ -14,24 +14,24 @@ document.getElementById("uploadForm").onsubmit = async function (e) {
             body: file,
             headers: {
                 "Content-Type": file.type,
-                "X-File-Name": file.name
+                "X-File-Name": file.name,
             },
         });
 
         if (response.ok) {
-            const result = await response.json();
-            alert("File uploaded successfully!");
+            alert("Video uploaded successfully!");
+            fileInput.value = "";
+            fetchVideos();
         } else {
             const errorText = await response.text();
-            console.error("Upload error:", errorText);
-            alert(`Upload failed: ${errorText}`);
+            console.error("Error uploading video:", errorText);
+            alert(`Error: ${errorText || "Unknown error"}`);
         }
     } catch (err) {
         console.error("Upload error:", err);
-        alert("An error occurred during file upload.");
+        alert("An error occurred while uploading the video.");
     }
 };
-
 
 async function fetchVideos() {
     try {
@@ -40,6 +40,7 @@ async function fetchVideos() {
         if (response.ok) {
             const videos = await response.json();
             const videoList = document.getElementById("videoList");
+            const videoPlayer = document.getElementById("videoPlayer");
 
             if (videos.length === 0) {
                 videoList.innerHTML = "<p>No videos available.</p>";
@@ -47,20 +48,21 @@ async function fetchVideos() {
             }
 
             videoList.innerHTML = videos
-                .map(
-                    (video) =>
-                        `<div>
-                            <video controls width="480">
-                                <source src="${video.url}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <p>${video.title || "Untitled Video"}</p>
-                        </div>`
-                )
+                .map((video, index) => `
+                    <div class="video-item" onclick="playVideo('${video.url}')">
+                        <span class="video-title">${index + 1}. ${video.title || "Untitled Video"}</span>
+                    </div>
+                `)
                 .join("");
+
+            // Autoplay the first video in the list
+            if (videos[0]) {
+                playVideo(videos[0].url);
+            }
         } else {
-            console.error("Fetch error:", await response.text());
-            alert("Error fetching videos.");
+            const errorText = await response.text();
+            console.error("Fetch error:", errorText);
+            alert(`Error fetching videos: ${errorText || "Unknown error"}`);
         }
     } catch (err) {
         console.error("Fetch error:", err);
@@ -68,4 +70,11 @@ async function fetchVideos() {
     }
 }
 
+function playVideo(url) {
+    const videoPlayer = document.getElementById("videoPlayer");
+    videoPlayer.src = url;
+    videoPlayer.play();
+}
+
+// Fetch and display videos on page load
 fetchVideos();
