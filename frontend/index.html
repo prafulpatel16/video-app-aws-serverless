@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Upload and Play</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Video Upload and Playback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        video {
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Video Upload & Play</h1>
+    <h1>Video Upload and Playback</h1>
     <form id="uploadForm">
-        <input type="file" id="videoFile" accept="video/*" required>
+        <input type="file" id="videoFile" accept="video/mp4" />
         <button type="submit">Upload Video</button>
     </form>
-    <div id="videoList"></div>
+    <h2>Uploaded Videos</h2>
+    <div id="videoList">
+        <p>Loading videos...</p>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

@@ -3,25 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Upload and Playback</title>
+    <title>Video Playlist and Playback</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        h1, h2 {
+            color: #4a90e2;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        #playerContainer {
+            margin-top: 20px;
+            width: 80%;
+            text-align: center;
+        }
+
         video {
-            display: block;
-            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 5px;
+        }
+
+        #videoList {
+            margin-top: 20px;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .video-item:hover {
+            background-color: #f0f8ff;
+        }
+
+        .video-title {
+            font-size: 16px;
+            color: #555;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Video Upload and Playback</h1>
+    <h1>Video Playlist and Playback</h1>
     <form id="uploadForm">
         <input type="file" id="videoFile" accept="video/mp4" />
         <button type="submit">Upload Video</button>
     </form>
-    <h2>Uploaded Videos</h2>
+    <div id="playerContainer">
+        <h2>Now Playing</h2>
+        <video id="videoPlayer" controls>
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <h2>Video Playlist</h2>
     <div id="videoList">
         <p>Loading videos...</p>
     </div>
